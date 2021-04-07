@@ -3,41 +3,39 @@ using namespace std;
 
 int main()
 {
-	char str1[30], str2[30] ;
+	char str[50];
+	char atr[100];// reversed string to be stored
+	int n,end,ind=0,j;
+	gets(str);
+	n = strlen(str);
 	
-	int n,c,i,j,k,u=0;
-	gets(str1);
-	
-    n = strlen(str1);
-    c = n;
-    k = n;
-    for(i = n - 1;i>=0;i--)
-    {
-    	if( str1[i] == ' ' || i == 0)
-    	{
-    		
-    		c--;
-    		//cout<<c<<endl;
-    		if( i == 0)
-			   j = c;
-			   else
-			    j = c+1;
-    		for(; j<k;j++)
-    		{
-    			str2[u]  = str1[j];
-    			u++;
-			}
-			k = c;
-			if(str1[c] == ' ')
+	end = n-1;// initializing end inex
+	for(int i = n-1;i>=0;i--)
+	{
+		
+		if(i == 0)// only if i reaches 0th index
+		{
+			for(j = 0;j<=end;j++)
 			{
-			str2[u] = str1[c];
-			u++;
+				atr[ind] = str[j];
+				ind++;
+			}
+			 atr[ind] = '\0';
+
 		}
+		
+		else if( str[i] == ' ') //looking for spaces and words
+		{
+			for(j = i+1;j<=end;j++)
+			{
+				atr[ind] = str[j];
+				ind++;
+			}
+			atr[ind] = str[i]; // copying space
+			ind++;
+			end = i-1;// re-Initializing end index
 		}
-		else 
-		   c--;
+		
 	}
-	
-	puts(str2);
-	
+	puts(atr);
 }
